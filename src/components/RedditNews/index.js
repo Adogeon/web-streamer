@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Box from "../Box";
+import API from "../../helper/API"
+
 
 const RedditNews = props => {
+
+    const [posts,setPosts] = useState([]);
+
+    useEffect(() => {
+      API.getHot(setPosts);
+    },[])
+
     return(
-        <Box>
-            Hello
-        </Box>
+        <React.Fragment>
+            {
+                posts && posts.map( (post,index) => <Box key={index} data={post}/>)
+            }
+        </React.Fragment>
     )
 }
 

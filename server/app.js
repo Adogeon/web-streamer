@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 3001;
 
-app.get('/',(req, res) => res.send('Hello World!'))
+require('dotenv').config()
+
+//ROUTES
+app.use('/reddit',require('./routes/reddit'));
+
 app.listen(PORT, () => console.log(`App is listening on port ${PORT}!`))
+
 
